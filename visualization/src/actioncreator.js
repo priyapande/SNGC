@@ -1,5 +1,6 @@
-import {LOGGED_IN,USER_SYNCING,LOGIN_ERROR} from './actions';
 
+import {LOGGED_IN,USER_SYNCING,LOGIN_ERROR,SET_REDIRECT_URL,LOGGED_OUT,INVALIDATE_USER} from './actions';
+import * as api from './api';
 
 export const loggedIn = (userId) => (dispatch, getState) => {
   dispatch({
@@ -15,14 +16,14 @@ export const setRedirectUrl = (redirectUrl) => (dispatch) => {
     });
 };
 
-export const login = (code) => (dispatch, getState) => {
+export const login = (password) => (dispatch, getState) => {
   let {user} = getState();
   if (user.isSyncing || user.isLoggedIn) {
     return Promise.resolve();
   }
 
   dispatch({ type: USER_SYNCING });
-  return api.login(code).then(
+  return api.login(password).then(
     response => {
       loggedIn(response)(dispatch, getState);
     },
@@ -37,10 +38,7 @@ export const logout = () => dispatch => {
     type: LOGGED_OUT
   });
   dispatch({
-    type: INVALIDATE_STUDENT_PROFILE
-  })
-  dispatch({
-    type: INVALIDATE_EXAMS
+    type: INVALIDATE_USER
   })
   return api.logout().then(
     response => {
@@ -49,3 +47,13 @@ export const logout = () => dispatch => {
     }
   );
 }
+
+const apiErrorHandler = (error,dispatch,errorActionType) => {
+  if(error.message === api.AUTH_FAILED) {
+    logout()(dispatch);
+  }
+  dispatch({
+    type: errorActionType,
+    error: error.message === api.AUTH_FAILED ? '': error.message
+  });
+};

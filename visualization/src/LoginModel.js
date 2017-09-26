@@ -9,13 +9,13 @@ class LoginModel extends Component {
   handleClick = () => this.setState({isShowingModal: true})
   handleClose = () => this.setState({isShowingModal: false})
   render() {
-    return (                
+    return (
 	  <a className="btn-login" onClick={this.handleClick}>Login
 		  {
 			this.state.isShowingModal &&
 			<ModalContainer onClose={this.handleClose}>
 			  <ModalDialog onClose={this.handleClose}>
-				<h1>LOGIN</h1>					
+				<h3 style={{alignSelf:'center'}}>Login</h3>
 				<form>
 				  <label for="username">Username</label>
 				  <input type="text" id="username" name="username"/>
@@ -26,10 +26,10 @@ class LoginModel extends Component {
 			  </ModalDialog>
 			</ModalContainer>
 		  }
-		</a>		 
+		</a>
     );
-  } 
-  openModal(){  
+  }
+  openModal(){
   }
 }
 export default LoginModel;
