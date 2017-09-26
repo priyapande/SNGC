@@ -1,0 +1,6 @@
+export const LOGGED_IN = 'LOGGED_IN'
+export const LOGGED_OUT = 'LOGGED_OUT'
+export const INVALIDATE_USER = 'INVALIDATE_USER'
+export const SET_REDIRECT_URL = 'SET_REDIRECT_URL'
+export const USER_SYNCING = 'USER_SYNCING'
+export const LOGIN_ERROR = 'LOGIN_ERROR'
