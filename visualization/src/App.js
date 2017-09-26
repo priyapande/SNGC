@@ -1,19 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { StickyContainer, Sticky } from 'react-sticky';
+import { browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import VDButton from './components/VDButton'
+import logoImg from './images/logo.png';
 
 class App extends Component {
+
   render() {
+    const buttonStyle = {
+      padding: "0 10px",
+      borderRadius: "5px",
+      border: "2px solid #3b8eff",
+      backgroundColor: "#fff",
+      color: "#3b8eff",
+    }
+    const headStyle = {
+      color:'#303132',
+      margin:0,
+      paddingLeft:200,
+      paddingTop:15,
+      fontFamily:'Poppins'
+    }
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <StickyContainer>
+        <Sticky>
+          <header id="header">
+            <nav style={{backgroundColor:'#327BF4'}}>
+              <div className="nav-wrapper container" style={{margin:0}}>
+                <a className="logo" style={{alignItems:'center'}}>
+                  <img src={logoImg} alt="Peanuts logo" style={{height:50,paddingTop:15,paddingLeft:15,float:'left'}}/>
+                  <h4 style={headStyle}>
+                    Group Dynamics
+                  </h4>
+                </a>
+              </div>
+              <VDButton buttonStyle={buttonStyle}> Login </VDButton>
+            </nav>
+          </header>
+        </Sticky>
+      </StickyContainer>
     );
   }
 }

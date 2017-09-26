@@ -1,24 +1,33 @@
-.App {
-  text-align: center;
+body {
+  min-height: 100%;
+  color: rgba(0,0,0,0.54);
+  background-color: #fafbfd;
+  font-family: 'Poppins', sans-serif !important;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+main {
+  margin-top: 30px !important;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-.App-intro {
-  font-size: large;
+.logo > img {
+  height: 100px;
 }
 
-/*for login model*/
+.sticky {
+  z-index: 1;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 90%;
+}
+
 .btn-login{
 	background-color: white;
     color: black;
@@ -40,12 +49,12 @@
 .btn-submit {
 	background-color: #2186C8;
 	border: 2px solid #089AF9;
-    color: white;    
+    color: white;
 	padding: 2%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;	
+    font-size: 16px;
 	float: right;
 }
 
