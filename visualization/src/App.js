@@ -4,7 +4,10 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import LoginModel from './LoginModel'
 import logoImg from './images/logo.png';
+import Dashboard from './pages/Dashboard';
 import {VDSideNav} from './components/VDSideNav';
+import './App.css';
+
 class App extends Component {
 
   componentDidUpdate(prevProps) {
@@ -50,6 +53,9 @@ class App extends Component {
         <Sticky>
           <VDSideNav/>
         </Sticky>
+        <div className="hide-on-small-only" style={{marginLeft:"200px",marginTop:0}}>
+          {this.props.children || <Dashboard/>}
+        </div>
       </StickyContainer>
 
     );
