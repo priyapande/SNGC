@@ -16,16 +16,18 @@ export const setRedirectUrl = (redirectUrl) => (dispatch) => {
     });
 };
 
-export const login = (password) => (dispatch, getState) => {
+export const login = (username,password) => (dispatch, getState) => {
   let {user} = getState();
   if (user.isSyncing || user.isLoggedIn) {
     return Promise.resolve();
   }
 
   dispatch({ type: USER_SYNCING });
-  return api.login(password).then(
+  return api.login(username,password).then(
     response => {
+      console.log('response');
       loggedIn(response)(dispatch, getState);
+      setRedirectUrl('http://18.221.150.85/login')
     },
     error => {
       apiErrorHandler(error,dispatch,LOGIN_ERROR);

@@ -10,9 +10,7 @@ const DashboardRoot = ({ store }) => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}> </Route>
-      <Route component={EnsureLoggedInContainer}>
-        <IndexRoute component={UserProfile}/>
-      </Route>
+      <Route path="/login" component={UserProfile}> </Route>
     </Router>
   </Provider>
 );

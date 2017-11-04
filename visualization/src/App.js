@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import LoginModel from './LoginModel'
 import logoImg from './images/logo.png';
 import Dashboard from './pages/Dashboard';
+import UserProfile from './pages/UserProfile';
 import {VDSideNav} from './components/VDSideNav';
 import './App.css';
 
@@ -36,7 +37,7 @@ class App extends Component {
     return (
       <StickyContainer>
         <Sticky>
-          <header id="header">
+          <header id="header" style={{zIndex:100}}>
             <nav style={{backgroundColor:'#18149A'}}>
               <div className="nav-wrapper container" style={{margin:0}}>
                 <a className="logo" style={{alignItems:'center'}}>
@@ -50,11 +51,9 @@ class App extends Component {
             </nav>
           </header>
         </Sticky>
-        <Sticky>
           <VDSideNav/>
-        </Sticky>
         <div className="hide-on-small-only" style={{marginLeft:"200px",marginTop:0}}>
-          {this.props.children || <Dashboard/>}
+          {this.props.children || <Dashboard/> || <UserProfile/>}
         </div>
       </StickyContainer>
 

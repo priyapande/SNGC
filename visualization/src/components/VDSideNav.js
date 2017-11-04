@@ -10,7 +10,7 @@ import { bubbles } from 'react-icons-kit/icomoon/bubbles';
 
 //specify the base color/background of the parent container if needed
 export const VDSideNav = () => (
-    <div style={{background: '#18149A', color: '#FFF', width: 200,marginTop:20}}>
+    <div style={{background: '#18149A', color: '#FFF', width: 200,marginTop:20,zIndex:1}}>
         <SideNav highlightColor='#18149A' highlightBgColor='#FFF' defaultSelected='Home'>
             <Nav id='Home'>
                 <NavIcon><SvgIcon size={20} icon={home}/></NavIcon>

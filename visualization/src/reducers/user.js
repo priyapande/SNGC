@@ -19,7 +19,7 @@ const user = (state = {
         ...state,
         isSyncing:false,
         isLoggedIn: true,
-        userId: action.userId
+        userId: action.userId,
       }
     case LOGGED_OUT:
       return {
