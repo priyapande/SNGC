@@ -1,7 +1,11 @@
 import React from 'react';
 import SimpleBarChart from '../components/SimpleBarChart';
 import StraightAnglePieChart from '../components/StraightAnglePieChart';
+
 class Dashboard extends React.Component {
+  componentDidMount() {
+
+  }
   render() {
     return (
         <div style={{alignItems:'center'}}>

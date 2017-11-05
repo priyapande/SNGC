@@ -1,5 +1,5 @@
 
-import {LOGGED_IN,USER_SYNCING,LOGIN_ERROR,SET_REDIRECT_URL,LOGGED_OUT,INVALIDATE_USER} from './actions';
+import {LOGGED_IN,USER_SYNCING,LOGIN_ERROR,SET_REDIRECT_URL,LOGGED_OUT,INVALIDATE_USER,SET_LOCATION_DATA,FETCH_DATA} from './actions';
 import * as api from './api';
 
 export const loggedIn = (userId) => (dispatch, getState) => {
@@ -7,6 +7,7 @@ export const loggedIn = (userId) => (dispatch, getState) => {
     type: LOGGED_IN,
     userId: userId
   });
+  //setRedirectUrl('localhost:3000/user/:userId')
 }
 
 export const setRedirectUrl = (redirectUrl) => (dispatch) => {
@@ -25,9 +26,8 @@ export const login = (username,password) => (dispatch, getState) => {
   dispatch({ type: USER_SYNCING });
   return api.login(username,password).then(
     response => {
-      console.log('response');
+      //console.log('response');
       loggedIn(response)(dispatch, getState);
-      setRedirectUrl('http://18.221.150.85/login')
     },
     error => {
       apiErrorHandler(error,dispatch,LOGIN_ERROR);
@@ -59,3 +59,15 @@ const apiErrorHandler = (error,dispatch,errorActionType) => {
     error: error.message === api.AUTH_FAILED ? '': error.message
   });
 };
+//
+// export const barlocation = (dispatch,getState) => {
+//   dispatch({
+//     type: FETCH_DATA
+//   });
+//   api.getbarlocation().then(
+//   response => dispatch({
+//     type: SET_LOCATION_DATA,
+//     data: response.locationdata
+//   })
+// );
+// }

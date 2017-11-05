@@ -11,6 +11,7 @@ const data = [
 ];
 
 class SimpleBarChart extends React.Component {
+  
 	render () {
   	return (
     	<BarChart width={600} height={300} data={data}

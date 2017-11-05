@@ -7,17 +7,17 @@ import cookie from 'react-cookie';
 class EnsureLoggedInContainer extends React.Component {
   componentDidMount() {
     const {currentURL, isLoggedIn} = this.props;
-    const userId = cookie.load('userId');
-    if (!isLoggedIn && !userId) {
+    //const userId = cookie.load('userId');
+    if (!isLoggedIn) {
       this.props.setRedirectUrl(currentURL);
       browserHistory.replace("/");
     }
     // On page reload our state doesn't know if a user is logged in or not
     // If userId cookie exists we assume that the user is logged in and when
     // any of the API request fail we will make the user go to login page
-    if(userId && !isLoggedIn) {
-      this.props.loggedIn(userId);
-    }
+    // if(userId && !isLoggedIn) {
+    //   this.props.loggedIn(userId);
+    // }
   }
 
   render() {

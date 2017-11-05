@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import UserProfile from './pages/UserProfile';
 import {VDSideNav} from './components/VDSideNav';
 import './App.css';
+import { Flex, Item } from 'react-flex';
+import 'react-flex/index.css';
 
 class App extends Component {
 
@@ -30,33 +32,33 @@ class App extends Component {
     const headStyle = {
       color:'#FFF',
       margin:0,
-      paddingLeft:200,
-      paddingTop:15,
-      fontFamily:'Poppins'
+      fontFamily:'Poppins',
+      fontSize:'18px'
     }
     return (
       <StickyContainer>
         <Sticky>
           <header id="header" style={{zIndex:100}}>
             <nav style={{backgroundColor:'#18149A'}}>
-              <div className="nav-wrapper container" style={{margin:0}}>
-                <a className="logo" style={{alignItems:'center'}}>
-                  <img src={logoImg} alt="Peanuts logo" style={{height:50,paddingTop:15,paddingLeft:15,float:'left'}}/>
-                  <LoginModel/>
-                  <h4 style={headStyle}>
+            <Flex row justifyContent='space-around' alignItems='center' className="nav-wrapper container">
+                  <Item className="logo">
+                    <img alt="Peanuts logo" src={logoImg} style={{marginTop:20}}/>
+                  </Item>
+                  <Item style={headStyle}>
                     Group Dynamics
-                  </h4>
-                </a>
-              </div>
-            </nav>
+                  </Item>
+                  <LoginModel/>
+            </Flex>
+          </nav>
           </header>
-        </Sticky>
           <VDSideNav/>
-        <div className="hide-on-small-only" style={{marginLeft:"200px",marginTop:0}}>
-          {this.props.children || <Dashboard/> || <UserProfile/>}
-        </div>
-      </StickyContainer>
-
+        </Sticky>
+        <Flex column justifyContent='flex-start' alignItems='center'>
+        <Item className="hide-on-small-only">
+          {<Dashboard/> || this.props.children}
+        </Item>
+        </Flex>
+    </StickyContainer>
     );
   }
 }

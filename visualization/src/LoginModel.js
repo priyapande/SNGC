@@ -34,11 +34,16 @@ class LoginModel extends Component {
 		});
 	}
 
-	handleSubmit = (event) => {
-		console.log("heer");
-		this.props.login(this.state.user,this.state.pass);
-
+	handleSubmit = event => {
+		//console.log("heer");
 		event.preventDefault();
+		try {
+			this.props.login(this.state.user,this.state.pass);
+			this.props.history.push('/');
+		}
+		catch(e) {
+			console.log(e);
+		}
 	}
 
   render() {

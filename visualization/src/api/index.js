@@ -1,7 +1,8 @@
 import request from 'superagent';
-import cookie from 'react-cookie';
+import Cookies from 'universal-cookie';
 export const AUTH_FAILED = 'AUTH_FAILED';
 const INTERNET_ERROR_MESSAGE = 'Not able to connect. Please check your internet connection.'
+const cookie = new Cookies();
 
 const baseResponseHandler = (err, res, reject, successCallBack) => {
   if(err) {
@@ -25,14 +26,19 @@ const baseResponseHandler = (err, res, reject, successCallBack) => {
 export const login = (username,password) => {
   return new Promise((resolve, reject) => {
     console.log(username,password);
-  let headers = new Headers();
-  headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
-  headers.append('Access-Control-Allow-Credentials', 'true');
 
   request.post('http://18.221.150.85/login')
-  .set('Content-Type', 'application/x-www-form-urlencoded',headers)
+  .set('Content-Type', 'application/x-www-form-urlencoded','Access-Control-Allow-Origin':'http://localhost:3000','Access-Control-Allow-Credentials':'true')
   .send({ username: username, password: password })
-  .end();
+  .end(function(err, res) {
+     baseResponseHandler(err, res, reject, () => {
+       //console.log(res.body.user_id)
+       resolve(res.body.user_id);
+       cookie.set('userId', String(res.body.user_id), { path: '/' });
+       //console.log(cookie);
+     });
+   });
+
 });
 
   // request.post('http://18.221.150.85/login')
@@ -41,14 +47,6 @@ export const login = (username,password) => {
   // });
 };
 
-export const logout = (code) => {
+export const logout = () => {
   cookie.remove('userId', { path: '/' });
-  return new Promise((resolve, reject) => {
-    request.get('/api/v1/studentplus/logout/')
-          .end(function(err, res) {
-             baseResponseHandler(err, res, reject, () => {
-               resolve(res.body);
-             });
-           });
-  });
 }

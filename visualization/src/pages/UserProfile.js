@@ -25,39 +25,13 @@ class UserProfile extends Component {
   }
 
   render() {
-
-    const headStyle = {
-      color:'#FFF',
-      margin:0,
-      paddingLeft:200,
-      paddingTop:15,
-      fontFamily:'Poppins'
-    }
     return (
-      <StickyContainer>
-        <Sticky>
-          <header id="header" style={{zIndex:100}}>
-            <nav style={{backgroundColor:'#18149A'}}>
-              <div className="nav-wrapper container" style={{margin:0}}>
-                <a className="logo" style={{alignItems:'center'}}>
-                  <img src={logoImg} alt="Peanuts logo" style={{height:50,paddingTop:15,paddingLeft:15,float:'left'}}/>
-                  <VDButton to="/"> Logout </VDButton>
-                  <h4 style={headStyle}>
-                    Group Dynamics
-                  </h4>
-                </a>
-              </div>
-            </nav>
-          </header>
-        </Sticky>
-          <VDSideNav/>
           <div style={{alignItems:'center'}}>
             <p style={{fontSize:'16px'}}> Strength of various groups</p>
             <BrushBarChart/>
             <p style={{fontSize:'16px'}}> Density of various groups </p>
             <TwoLevelPieChart/>
           </div>
-      </StickyContainer>
     );
   }
 }
