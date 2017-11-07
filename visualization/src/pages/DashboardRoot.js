@@ -11,7 +11,7 @@ const DashboardRoot = ({ store }) => (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
       <Route path="/login" component={LoginModel} />
-      <IndexRoute component={UserProfile} />
+      <Route path="/user/:userId" component={UserProfile} />
       </Route>
     </Router>
   </Provider>

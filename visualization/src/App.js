@@ -6,7 +6,7 @@ import LoginModel from './LoginModel'
 import logoImg from './images/logo.png';
 import Dashboard from './pages/Dashboard';
 import UserProfile from './pages/UserProfile';
-import {VDSideNav} from './components/VDSideNav';
+import VDSideNav from './components/VDSideNav';
 import './App.css';
 import { Flex, Item } from 'react-flex';
 import 'react-flex/index.css';
@@ -33,7 +33,7 @@ class App extends Component {
       color:'#FFF',
       margin:0,
       fontFamily:'Poppins',
-      fontSize:'18px'
+      fontSize:'30px'
     }
     return (
       <StickyContainer>
@@ -55,7 +55,7 @@ class App extends Component {
         </Sticky>
         <Flex column justifyContent='flex-start' alignItems='center'>
         <Item className="hide-on-small-only">
-          {<Dashboard/> || this.props.children}
+          {this.props.children || <Dashboard/>}
         </Item>
         </Flex>
     </StickyContainer>

@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import * as actioncreators from './actioncreator';
 import './App.css';
 import VDButton from './components/VDButton';
+import UserProfile from './pages/UserProfile';
+import { browserHistory } from 'react-router';
+import { routerActions } from 'react-router-redux';
 
 class LoginModel extends Component {
 	constructor(props) {
@@ -26,29 +29,43 @@ class LoginModel extends Component {
 		const target = event.target;
 		const user = target.id==="username" ? target.value: this.state.user;
 		const pass = target.id==="password" ? target.value: this.state.pass;
-		console.log(user);
-		console.log(pass);
+		//console.log(user);
+		//console.log(pass);
 		this.setState({
 			user:user,
 			pass:pass
 		});
 	}
 
-	handleSubmit = event => {
+	redirect = (userId) => {
+		this.handleClose();
+		browserHistory.push("/user/"+userId);
+	}
+
+	handleSubmit = async event => {
 		//console.log("heer");
 		event.preventDefault();
 		try {
-			this.props.login(this.state.user,this.state.pass);
-			this.props.history.push('/');
+			await this.props.login(this.state.user,this.state.pass);
+			const userId = this.props.userId;
+			//console.log(userId);
+			//browserHistory.push('/user');
+			this.redirect(userId)
+			//return (<Link to="/user/:userId" />)
 		}
 		catch(e) {
 			console.log(e);
 		}
 	}
 
+	logout() {
+		this.props.logout();
+	}
+
   render() {
     return (
 			<div>
+			{this.props.isLoggedIn? <a className="btn-login" onClick={()=>{this.logout()}}>Logout</a> :
 		  	<a className="btn-login" onClick={this.handleClick}>Login
 				  {
 					this.state.isShowingModal &&
@@ -66,7 +83,8 @@ class LoginModel extends Component {
 					</ModalContainer>
 				  }
 				</a>
-		</div>
+			}
+			</div>
     );
   }
 }
@@ -74,6 +92,8 @@ class LoginModel extends Component {
 const mapStateToProps = ({user}, ownProps) => {
   return {
     isSyncing: user.isSyncing,
+		isLoggedIn:user.isLoggedIn,
+		userId:user.userId,
     className: ownProps.className,
     error: user.error
   };

@@ -42,12 +42,7 @@ export const logout = () => dispatch => {
   dispatch({
     type: INVALIDATE_USER
   })
-  return api.logout().then(
-    response => {
-    },
-    error => {
-    }
-  );
+  return api.logout();
 }
 
 const apiErrorHandler = (error,dispatch,errorActionType) => {
