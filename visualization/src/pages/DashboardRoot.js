@@ -1,8 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import UserProfile from './UserProfile';
-import EnsureLoggedInContainer from './EnsureLoggedInContainer'
 import LoginModel from '../LoginModel'
 import App from '../App';
 

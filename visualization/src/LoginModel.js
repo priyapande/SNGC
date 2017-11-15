@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import * as actioncreators from './actioncreator';
 import './App.css';
 import VDButton from './components/VDButton';
-import UserProfile from './pages/UserProfile';
 import { browserHistory } from 'react-router';
-import { routerActions } from 'react-router-redux';
 
 class LoginModel extends Component {
 	constructor(props) {

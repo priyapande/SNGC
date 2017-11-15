@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import LoginModel from './LoginModel'
 import logoImg from './images/logo.png';
 import Dashboard from './pages/Dashboard';
-import UserProfile from './pages/UserProfile';
 import VDSideNav from './components/VDSideNav';
 import './App.css';
 import { Flex, Item } from 'react-flex';

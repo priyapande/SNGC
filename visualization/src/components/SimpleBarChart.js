@@ -1,30 +1,34 @@
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import React from 'react';
-const data = [
-      {name: 'pecmarket', percentage: 24},
-      {name: 'gym', percentage: 30},
-      {name: 'ccd', percentage: 20},
-      {name: 'nescafe', percentage: 27},
-      {name: 'audi', percentage: 18},
-      {name: 'library', percentage: 23},
-      {name: 'dept', percentage: 34},
-];
+import { connect } from 'react-redux';
+import * as actioncreators from '../actioncreator';
 
 class SimpleBarChart extends React.Component {
-  
+
+  componentDidMount() {
+    //console.log("mount");
+    this.props.barlocation();
+  }
+
 	render () {
   	return (
-    	<BarChart width={600} height={300} data={data}
+    	<BarChart width={600} height={300} data={this.props.data}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
        <XAxis dataKey="name"/>
        <YAxis/>
        <CartesianGrid strokeDasharray="3 3"/>
        <Tooltip/>
        <Legend />
-       <Bar dataKey="percentage" fill="#4C7B1D" />
+       <Bar dataKey="strength" fill="#52F0C5" />
       </BarChart>
     );
   }
 }
 
-export default SimpleBarChart;
+const mapStateToProps = ({graph}) => {
+  return {
+    data:graph.location
+  }
+}
+
+export default connect(mapStateToProps,actioncreators)(SimpleBarChart);

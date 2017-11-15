@@ -40,13 +40,60 @@ export const login = (username,password) => {
    });
 
 });
-
-  // request.post('http://18.221.150.85/login')
-  //        .send({username,password})
-  //        .end();
-  // });
 };
 
 export const logout = () => {
   cookie.remove('userId', { path: '/' });
+}
+
+export const getbarlocation = (userId) => {
+  return new Promise((resolve, reject) => {
+    request.get('http://18.221.150.85/density-api')
+    .set('Content-Type', 'application/x-www-form-urlencoded','Access-Control-Allow-Origin':'http://localhost:3000','Access-Control-Allow-Credentials':'true')
+    .end(function(err,res) {
+      baseResponseHandler(err, res, reject, () => {
+        console.log(res);
+        resolve(res.body.data);
+      })
+    });
+  });
+}
+
+export const getuserStrength = (userId) => {
+  return new Promise((resolve, reject) => {
+    request.get('http://18.221.150.85/group-strength-api/'+userId)
+    .set('Content-Type', 'application/x-www-form-urlencoded','Access-Control-Allow-Origin':'http://localhost:3000','Access-Control-Allow-Credentials':'true')
+    .end(function(err,res) {
+      baseResponseHandler(err, res, reject, () => {
+        console.log(res);
+        resolve(res.body.data);
+      })
+    })
+  })
+}
+
+export const getgenderRatio = () => {
+  return new Promise((resolve, reject) => {
+    request.get('http://18.221.150.85/gender-api/')
+    .set('Content-Type', 'application/x-www-form-urlencoded','Access-Control-Allow-Origin':'http://localhost:3000','Access-Control-Allow-Credentials':'true')
+    .end(function(err,res) {
+      baseResponseHandler(err, res, reject, () => {
+        console.log(res);
+        resolve(res.body.data);
+      })
+    })
+  })
+}
+
+export const getgroupRatio = (userId) => {
+  return new Promise((resolve, reject) => {
+    request.get('http://18.221.150.85/user-groups-api/'+userId)
+    .set('Content-Type', 'application/x-www-form-urlencoded','Access-Control-Allow-Origin':'http://localhost:3000','Access-Control-Allow-Credentials':'true')
+    .end(function(err,res) {
+      baseResponseHandler(err, res, reject, () => {
+        console.log(res);
+        resolve(res.body.data);
+      })
+    })
+  })
 }

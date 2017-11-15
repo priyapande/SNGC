@@ -1,26 +1,31 @@
 import  {Radar, RadarChart, PolarGrid, Legend, PolarAngleAxis, PolarRadiusAxis} from 'recharts';
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actioncreators from '../actioncreator';
 
-const data = [
-    { subject: 'pecmarket', A: 120, B: 110, fullMark: 150 },
-    { subject: 'Library', A: 98, B: 130, fullMark: 150 },
-    { subject: 'Auditorium', A: 86, B: 130, fullMark: 150 },
-    { subject: 'Department', A: 99, B: 100, fullMark: 150 },
-    { subject: 'Gym', A: 85, B: 90, fullMark: 150 },
-    { subject: 'CCD', A: 65, B: 85, fullMark: 150 },
-];
 
 class TwoLevelPieChart extends React.Component{
+  componentDidMount() {
+    this.props.userStrength(this.props.userId);
+  }
+
   render () {
   	return (
-    	<RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={data}>
+    	<RadarChart cx={300} cy={250} outerRadius={150} width={600} height={500} data={this.props.data}>
           <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
+          <PolarAngleAxis dataKey="username" />
           <PolarRadiusAxis/>
-          <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
-        </RadarChart>
+          <Radar name="Mike" dataKey="strength" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6}/>
+      </RadarChart>
     );
   }
 }
 
-export default TwoLevelPieChart;
+const mapStateToProps = ({graph,user}) => {
+  return {
+    data:graph.userStrength,
+    userId:user.userId
+  }
+}
+
+export default connect(mapStateToProps,actioncreators)(TwoLevelPieChart);
