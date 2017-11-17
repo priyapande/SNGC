@@ -3,6 +3,8 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import BrushBarChart from '../components/BrushBarChart';
 import TwoLevelPieChart from '../components/SimpleRadarChart'
+import { Flex, Item } from 'react-flex';
+
 
 class UserProfile extends Component {
 
@@ -15,12 +17,16 @@ class UserProfile extends Component {
 
   render() {
     return (
-          <div style={{alignItems:'center'}}>
-            <p style={{fontSize:'16px'}}> Strength of various groups and members</p>
+      <Flex column alignItems='center' justifyContent='flex-start'>
+            <Item style={{fontSize:'20px'}}> Strength of various groups and members</Item>
             <BrushBarChart/>
-            <p style={{fontSize:'16px'}}> Strength with strong group members </p>
+            <Item style={{width:'40%',margin:20}} alignSelf='center'>The chart describes the strength of the user with its different groups
+The filter can be used to see different ranges of strength</Item>
+            <Item style={{fontSize:'20px',paddingTop:60}}> Strength with strong group members </Item>
             <TwoLevelPieChart/>
-          </div>
+            <Item style={{width:'40%',margin:20}} alignSelf='center'>The chart describes the strength of the user with other group members in form of a Radial Bar Chart , from which we can know the strongest group member for that particular user
+            </Item>
+      </Flex>
     );
   }
 }
